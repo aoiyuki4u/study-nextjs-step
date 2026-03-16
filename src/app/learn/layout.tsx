@@ -1,5 +1,5 @@
-import "@/app/ui/dashboard/dashboard.css"
-import { inter } from '@/app/ui/fonts';
+import "@/app/ui/learn/dashboard/dashboard.css"
+import { inter } from '@/app/ui/learn/fonts';
 
 export default function RootLayout({
   children,
