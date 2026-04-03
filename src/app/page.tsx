@@ -16,12 +16,12 @@ export default function Home(){
             <Link href="/learn" style={buttonStyle}>NextJS Dashboard</Link>
           </dd>
         </dl>
-        <dl className='flex w-full items-center'>
+        {/* <dl className='flex w-full items-center'>
           <dt className='p-5'>study...ing : </dt>
           <dd>
             <Link href="/study" style={buttonStyle}>study</Link>
           </dd>
-        </dl>
+        </dl> */}
         
         
       </div>
