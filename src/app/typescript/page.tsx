@@ -93,7 +93,7 @@ add(10, "20"); // 에러 `}
               onClick={()=>alert('123')}
               style={{margin:'10px', padding:'10px', border:'1px solid #333'}}
             >
-              123123
+              alert 123
             </button>
           </div>
         </div>

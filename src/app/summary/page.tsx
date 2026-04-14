@@ -1,7 +1,11 @@
 "use client";
+import Link from 'next/link';
 
 export default function Home() {
   const greeting:string = "Next.js TypeScript";  
+
+  const twTableCell = "p-1 border border-slate-300";
+
 
   return(
     <main style={{padding:'20px'}}>
@@ -109,34 +113,35 @@ export default function Home() {
               </ul>
             </dd>
           </dl>
-          <table>
+          <table className="border-slate-400">
+            <colgroup><col className="min-w-[6.25rem]" /></colgroup>
             <thead>
               <tr>
-                <td>구분</td>
-                <td>React (Pure SPA)</td>
-                <td>Next.js (Framework)</td>
+                <td className={twTableCell}>구분</td>
+                <td className={twTableCell}>React (Pure SPA)</td>
+                <td className={twTableCell}>Next.js (Framework)</td>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>주요 렌더링</td>
-                <td>CSR (클라이언트 사이드)</td>
-                <td>SSR, SSG, ISR (서버/정적 생성)</td>
+                <td className={twTableCell}>주요 렌더링</td>
+                <td className={twTableCell}>CSR (클라이언트 사이드)</td>
+                <td className={twTableCell}>SSR, SSG, ISR (서버/정적 생성)</td>
               </tr>
               <tr>
-                <td>SEO</td>
-                <td>추가 설정 필요</td>
-                <td>기본 탑재</td>
+                <td className={twTableCell}>SEO</td>
+                <td className={twTableCell}>추가 설정 필요</td>
+                <td className={twTableCell}>기본 탑재</td>
               </tr>
               <tr>
-                <td>라우팅</td>
-                <td>라이브러리 설치 필요</td>
-                <td>파일 시스템 기반 (자동)</td>
+                <td className={twTableCell}>라우팅</td>
+                <td className={twTableCell}>라이브러리 설치 필요</td>
+                <td className={twTableCell}>파일 시스템 기반 (자동)</td>
               </tr>
               <tr>
-                <td>초기 로딩</td>
-                <td>자바스크립트 양에 따라 느려짐	</td>
-                <td>미리 생성된 HTML 덕분에 빠름</td>
+                <td className={twTableCell}>초기 로딩</td>
+                <td className={twTableCell}>자바스크립트 양에 따라 느려짐</td>
+                <td className={twTableCell}>미리 생성된 HTML 덕분에 빠름</td>
               </tr>
             </tbody>
           </table>
@@ -209,32 +214,136 @@ export default function Home() {
         <div className="bg-gray-800 text-white p-4 rounded-lg overflow-x-auto">
           <p className="text-xl font-bold">9장 스트리밍</p>
           <dl className="flex">
-            <dt><span className="bg-orange-400 text-black">정적 렌더링</span> :</dt>
+            <dt><span className="bg-orange-400 text-black">Streaming</span> :</dt>
             <dd className="ml-1">
               <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li>전체가 로드될 때까지 기다리지 않고, 준비된 UI 조각부터 순차적으로 화면에 보여주는 기술</li>
               </ul>
             </dd>
           </dl>
           <dl className="flex">
-            <dt><span className="bg-orange-400 text-black">동적 렌더링</span> :</dt>
+            <dt><span className="bg-orange-400 text-black">loading.tsx</span> :</dt>
             <dd className="ml-1">
               <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+                <li>페이지 로딩 중에 보여줄 대체 UI(Skeleton UI)를 정의하는 파일</li>
+              </ul>
+            </dd>
+          </dl>
+          <dl className="flex">
+            <dt><span className="bg-orange-400 text-black">Suspense</span> :</dt>
+            <dd className="ml-1">
+              <ul>
+                <li>React에서 특정 컴포넌트가 로딩 중일 때 로딩 상태를 보여주도록 감싸는 기능</li>
+              </ul>
+            </dd>
+          </dl>
+        </div>
+
+        <div className="bg-gray-800 text-white p-4 rounded-lg overflow-x-auto">
+          <p className="text-xl font-bold">10장 검색 및 페이지네이션 기능</p>
+          <p className="text-xl">Next.js 클라이언트 훅</p>
+          <dl className="flex">
+            <dt><span className="bg-orange-400 text-black">useSearchParams</span> :</dt>
+            <dd className="ml-1">
+              <ul>
+                <li>URL의 매개변수에 접근</li>
+              </ul>
+            </dd>
+          </dl>
+          <dl className="flex">
+            <dt><span className="bg-orange-400 text-black">usePathname</span> :</dt>
+            <dd className="ml-1">
+              <ul>
+                <li>현재 URL의 경로(매개변수 제외)</li>
+              </ul>
+            </dd>
+          </dl>
+          <dl className="flex">
+            <dt><span className="bg-orange-400 text-black">useRouter</span> :</dt>
+            <dd className="ml-1">
+              <ul>
+                <li>클라이언트 구성 요소 내의 경로 간 이동을 프로그래밍 방식으로 가능<br /><Link href="https://nextjs.org/docs/app/api-reference/functions/use-router#userouter" target='_blank' className='underline hover:text-orange-500'>여러방법 사용...</Link></li>
+              </ul>
+            </dd>
+          </dl>
+          <dl className="flex">
+            <dt><span className="bg-orange-400 text-black">input defaultValue, value</span> :</dt>
+            <dd className="ml-1">
+              <ul>
+                <li>value : 제어 컴포넌트로 만들려면 `State` 속성을 사용해야 함.</li>
+                <li>defaultValue : 입력요소 자체 관리(네이티브)</li>
+              </ul>
+            </dd>
+          </dl>
+          <table className="border-slate-400">
+            <colgroup><col className="min-w-[6.25rem]" /></colgroup>
+            <thead>
+              <tr>
+                <td className={twTableCell}>구분</td>
+                <td className={twTableCell}>value (제어)</td>
+                <td className={twTableCell}>defaultValue (비제어)</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className={twTableCell}>상태 관리</td>
+                <td className={twTableCell}>React State가 관리</td>
+                <td className={twTableCell}>DOM(브라우저)이 관리</td>
+              </tr>
+              <tr>
+                <td className={twTableCell}>동기화</td>
+                <td className={twTableCell}>항상 State와 일치</td>
+                <td className={twTableCell}>초기값 설정 후 동기화 안 됨</td>
+              </tr>
+              <tr>
+                <td className={twTableCell}>필수 요소</td>
+                <td className={twTableCell}>onChange 핸들러 필수</td>
+                <td className={twTableCell}>필수 아님</td>
+              </tr>
+              <tr>
+                <td className={twTableCell}>접근 방식</td>
+                <td className={twTableCell}>state 변수 직접 사용</td>
+                <td className={twTableCell}>useRef를 통해 DOM 접근</td>
+              </tr>
+              <tr>
+                <td className={twTableCell}>성능</td>
+                <td className={twTableCell}>입력마다 리렌더링 발생 가능</td>
+                <td className={twTableCell}>리렌더링 없이 독립적 동작</td>
+              </tr>
+            </tbody>
+          </table>
+          <dl className="flex">
+            <dt><span className="bg-orange-400 text-black">export default async function InvoicesTable</span> :</dt>
+            <dd className="ml-1">
+              <ul>
+                <li>이 파일에서 가장 대표가 되는 함수</li>
+                <li>import Table from '@/app/ui/learn/invoices/table';</li>
+                <li>'Table' 이렇게 재선언 가능</li>
+              </ul>
+            </dd>
+          </dl>
+          <dl className="flex">
+            <dt><span className="bg-orange-400 text-black">export function InvoicesTable (default가 없음)</span> :</dt>
+            <dd className="ml-1">
+              <ul>
+                <li>import &#123;InvoicesTable&#125;from ...</li>
+                <li>&#123;InvoicesTable&#125; 변경 불가</li>
+                <li>import &#123; InvoicesTable as Table &#125; from ...</li>
+                <li>ㄴ 이렇게 재선언 가능</li>
+                
+              </ul>
+            </dd>
+          </dl>
+        </div>
+
+        <div className="bg-gray-800 text-white p-4 rounded-lg overflow-x-auto">
+          <p className="text-xl font-bold">기타</p>
+          <dl className="flex">
+            <dt><span className="bg-orange-400 text-black">use client</span> :</dt>
+            <dd className="ml-1">
+              <ul>
+                <li>브라우저의 기능(클릭, 상태 관리)이 필요하면 'use client'를 붙이고 클라이언트 전용 함수를 사용</li>
+                <li>'use client'가 없으면 기본적으로 서버 컴포넌트입니다. 여기서 useRouter 같은 훅을 쓰면 에러 발생</li>
               </ul>
             </dd>
           </dl>

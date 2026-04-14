@@ -11,8 +11,13 @@ export default function Navbar() {
     }}>
       <Link href="/" style={{ color: 'white', fontWeight: 'bold' }}>HOME</Link>
       <Link href="/learn" style={{ color: '#aaa' }}>NextJS Dashboard</Link>
-      <Link href="/study" style={{ color: '#aaa' }}>Study</Link>
       <Link href="/summary" style={{ color: '#aaa' }}>Summary</Link>
+      <Link href="/typescript" style={{ color: '#aaa' }}>TypeScript</Link>      
+      <Link href="/motion/framer" style={{ color: '#aaa' }}>Framer</Link>
+      <Link href="/motion/gsap" style={{ color: '#aaa' }}>GSAP</Link>
+      <Link href="/motion/svg" style={{ color: '#aaa' }}>SVG</Link>
+      <Link href="/motion/swiper" style={{ color: '#aaa' }}>Swiper</Link>
+      <Link href="/motion/parallax" style={{ color: '#aaa' }}>Parallax</Link>
     </nav>
   );
 }

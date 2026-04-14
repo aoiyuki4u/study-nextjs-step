@@ -1,6 +1,6 @@
 import Pagination from '@/app/ui/learn/invoices/pagination';
 import Search from '@/app/ui/learn/search';
-import Table from '@/app/ui/learn/invoices/table';
+import Table from '@/app/ui/learn/invoices/table'; // InvoicesTable을 Table이라는 이름으로 가져옴
 import { CreateInvoice } from '@/app/ui/learn/invoices/buttons';
 import { lusitana } from '@/app/ui/learn/fonts';
 import { InvoicesTableSkeleton } from '@/app/ui/learn/skeletons';
@@ -16,6 +16,7 @@ export default async function Page(props: {
   const searchParams = await props.searchParams;
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 1;
+  
   const totalPages = await fetchInvoicesPages(query);
   return (
     <div className="w-full">
