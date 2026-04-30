@@ -1,6 +1,11 @@
 import Form from '@/app/ui/learn/invoices/create-form';
 import Breadcrumbs from '@/app/ui/learn/invoices/breadcrumbs';
 import { fetchCustomers } from '@/app/lib/learn/data';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Create | Acme',
+};
  
 export default async function Page() {
   const customers = await fetchCustomers();

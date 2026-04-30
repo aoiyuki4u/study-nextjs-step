@@ -1,4 +1,9 @@
 import SideNav from '@/app/ui/learn/dashboard/sidenav';
+import { Metadata } from 'next';
+ 
+export const metadata: Metadata = {
+  title: 'Home | Acme',
+};
  
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

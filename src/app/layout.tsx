@@ -1,9 +1,19 @@
 // import type { Metadata } from "next";
 // import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import SmoothScroll from "@/app/components/SmoothScroll";
+import "@/app/globals.css";
+import SmoothScroll from "@/app/components/common/SmoothScroll";
 import Navbar from '@/app/ui/Navbar';
+import { Metadata } from 'next';
 
+export const metadata: Metadata = {
+  // title: '',
+  title: {
+    template: '%s',
+    default: 'UX NextJs Study',
+  },
+  description: 'UX NextJs Study UX NextJs Study UX NextJs Study UX NextJs Study',
+  metadataBase: new URL('http://192.168.100.74:3000/'),
+};
 
 export default function RootLayout({
   children,
@@ -15,7 +25,9 @@ export default function RootLayout({
       <body>
         <SmoothScroll>
           <Navbar />
-          {children}
+          <div>
+            {children}
+          </div>
         </SmoothScroll>
       </body>
     </html>

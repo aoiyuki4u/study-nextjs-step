@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useStore } from "@/store/useStore";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 
 interface Props {
@@ -8,21 +9,26 @@ interface Props {
 }
 
 export default function ImageGallery({ ImageGalleryID, MotionType }: Props) {
-  const [selected, setSelected] = useState("All");
+  const { imgTabCate, imgTabItems, isImgTabLoading, fetchImgTabData } = useStore();
+  const [activeTab, setActiveTab] = useState<string | null>(null);
 
-  const categories = ["All", "category 1", "category 2", "category 3"];
-  const items = [
-    { id: 1, category: "category 1", title: "title 1", color: "bg-emerald-400" },
-    { id: 2, category: "category 2", title: "title 2", color: "bg-slate-400" },
-    { id: 3, category: "category 3", title: "title 3", color: "bg-sky-400" },
-    { id: 4, category: "category 1", title: "title 4", color: "bg-blue-400" },
-    { id: 5, category: "category 2", title: "title 5", color: "bg-zinc-400" },
-    { id: 6, category: "category 3", title: "title 6", color: "bg-neutral-800" },
-  ];
+  useEffect(() => {
+    fetchImgTabData();
+  }, [fetchImgTabData]);
 
-  const filteredItems = selected === "All" 
-    ? items 
-    : items.filter(item => item.category === selected);
+  // const categories = ["All", "category 1", "category 2", "category 3"];
+  // const items = [
+  //   { id: 1, category: "category 1", title: "title 1", color: "bg-emerald-400" },
+  //   { id: 2, category: "category 2", title: "title 2", color: "bg-slate-400" },
+  //   { id: 3, category: "category 3", title: "title 3", color: "bg-sky-400" },
+  //   { id: 4, category: "category 1", title: "title 4", color: "bg-blue-400" },
+  //   { id: 5, category: "category 2", title: "title 5", color: "bg-zinc-400" },
+  //   { id: 6, category: "category 3", title: "title 6", color: "bg-neutral-800" },
+  // ];
+
+  const filteredItems = activeTab === "All" 
+    ? imgTabItems 
+    : imgTabItems.filter(item => item.category === activeTab);
 
   const containerVariants : Variants = {
     hidden: { opacity: 0 },
@@ -46,15 +52,15 @@ export default function ImageGallery({ ImageGalleryID, MotionType }: Props) {
   return (
     <section className="py-20 bg-white px-10">
       <div className="flex justify-center gap-4 mb-12">
-        {categories.map((cat) => (
+        {imgTabCate.map((cat) => (
           <button
             key={cat}
-            onClick={() => setSelected(cat)}
+            onClick={() => setActiveTab(cat)}
             className={`relative px-6 py-2 text-sm font-bold transition-colors
-              ${selected === cat? "text-white" : "text-slate-400"}  
+              ${activeTab === cat? "text-white" : "text-slate-400"}  
             `}
           >
-            {selected === cat && (
+            {activeTab === cat && (
               <motion.div
                 layoutId={ImageGalleryID}
                 className="absolute inset-0 bg-black rounded-full"
@@ -67,17 +73,17 @@ export default function ImageGallery({ ImageGalleryID, MotionType }: Props) {
       </div>
       <motion.div
         layout
-        key={selected}
+        key={activeTab}
         variants={containerVariants}
         initial="hidden"
         animate="visible"
         className="grid grid-cols-1 md:grid-cols-3 gap-6"
       >
         <AnimatePresence mode="popLayout">
-          {filteredItems.map((item) => (
+          {filteredItems.map((item, index) => (
             <motion.div
               layout
-              key={item.id}
+              key={`gallery-${item.id}-${index}`}
               variants={itemVariants}
               exit={{ opacity: 0, scale: 0.9 }}
               className={`h-64 ${item.color} rounded-3xl p-8 text-white shadow-xl`}

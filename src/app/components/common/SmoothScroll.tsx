@@ -12,6 +12,9 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       smoothWheel: true, // 마우스 휠 부드럽게
     });
 
+    //전역 사용
+    (window as any).lenis = lenis;
+
     // RAF(RequestAnimationFrame)를 통해 Lenis 업데이트 루프 생성
     function raf(time: number) {
       lenis.raf(time);
@@ -23,6 +26,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     // 컴포넌트 언마운트 시 정리
     return () => {
       lenis.destroy();
+      (window as any).lenis = null;
     };
   }, []);
 

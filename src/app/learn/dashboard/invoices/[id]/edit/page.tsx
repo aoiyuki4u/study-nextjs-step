@@ -1,6 +1,12 @@
 import Form from '@/app/ui/learn/invoices/edit-form';
 import Breadcrumbs from '@/app/ui/learn/invoices/breadcrumbs';
 import { fetchInvoiceById, fetchCustomers } from '@/app/lib/learn/data';
+import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Edit | Acme',
+};
  
 export default async function Page(props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
@@ -9,6 +15,10 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
     fetchInvoiceById(id),
     fetchCustomers(),
   ]);
+
+  if (!invoice) {
+    notFound();
+  }
 
   return (
     <main>

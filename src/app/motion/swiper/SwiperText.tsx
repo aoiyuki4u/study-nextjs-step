@@ -3,24 +3,36 @@ import { useRef, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperCore } from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
+import { useStore } from "@/store/useStore";
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 
+
 export default function SwiperText(){
-  interface SwiperText {
-    id: number;
-    title: string;
-    desc: string;
-  }
-  const data: SwiperText[] = [
-    { id: 1, title: "Swiper 1", desc: "Desc 1" },
-    { id: 2, title: "Swiper 2", desc: "Desc 2" },
-    { id: 3, title: "Swiper 3", desc: "Desc 3" },
-    { id: 4, title: "Swiper 4", desc: "Desc 4" },
-    { id: 5, title: "Swiper 5", desc: "Desc 5" },
-    { id: 6, title: "Swiper 6", desc: "Desc 6" },
-  ];
+  const { swiperItems, isSwiperLoading, fetchSwiperItems } = useStore();
+  useEffect(() => {
+    fetchSwiperItems();
+  }, [fetchSwiperItems]);
+
+  // interface SwiperText {
+  //   id: number;
+  //   title: string;
+  //   desc: string;
+  // }
+  // const data: SwiperText[] = [
+  //   { id: 1, title: "Swiper 1", desc: "Desc 1" },
+  //   { id: 2, title: "Swiper 2", desc: "Desc 2" },
+  //   { id: 3, title: "Swiper 3", desc: "Desc 3" },
+  //   { id: 4, title: "Swiper 4", desc: "Desc 4" },
+  //   { id: 5, title: "Swiper 5", desc: "Desc 5" },
+  //   { id: 6, title: "Swiper 6", desc: "Desc 6" },
+  // ];
   const swiperRef = useRef<SwiperCore | null>(null);
+  useEffect(()=>{
+    if(swiperRef.current){
+      animateText(swiperRef.current)
+    }
+  }, []);
   // const svgPathRef = useRef<SVGPathElement>(null);
   // const shapes = [
   //   "M20,10 Q50,10 80,10 Q80,50 80,90 Q50,90 20,90 Q20,50 20,10 Z",
@@ -57,20 +69,17 @@ export default function SwiperText(){
     // }
   }
 
-  useEffect(()=>{
-    if(swiperRef.current){
-      animateText(swiperRef.current)
-    }
-  }, []);
+  
 
   
   return (   
-    <div className="w-full min-h-screen bg-slate-600 text-white flex flex-col items-center justify-center p-6">
-      <div className="w-full max-w-5xl relative">
+    <div className="w-full min-h-screen bg-slate-600 text-white flex flex-col items-center justify-center">
+      {/* <div className="w-full max-w-5xl relative"> */}
+      <div className="w-full w-full relative">
         <Swiper
           modules={[Navigation, Pagination]}
           spaceBetween={40}
-          slidesPerView={1.2}
+          slidesPerView={1.5}
           centeredSlides={true}
           loop={true}
           navigation={{
@@ -85,7 +94,7 @@ export default function SwiperText(){
             animateText(swiper);
           }}
         >
-          {data.map((item, i) => (
+          {swiperItems.map((item) => (
             <SwiperSlide
               key={item.id}
               className='py-10'

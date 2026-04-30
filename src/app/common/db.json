@@ -1,0 +1,46 @@
+{
+  "sharedItems": [
+    { "id": "1", "category": "category 1", "title": "", "desc": "desc 1", "color": "bg-blue-500" },
+    { "id": "2", "category": "", "title": "TitleTitle 2", "desc": "desc Title 2", "color": "bg-red-500" },
+    { "id": "3", "category": "category 3", "title": "TitleTitleTitle 3", "desc": "" },
+    { "id": "4", "category": "category 4", "title": "TitleTitleTitleTitle 4", "desc": "desc Title 4", "color": "bg-purple-500" },
+    { "id": "5", "category": "category 5", "title": "TitleTitle 5", "desc": "desc Title 5", "color": "bg-gray-500" },
+    { "id": "6", "category": "category 6", "title": "TitleTitleTitle 6", "desc": "desc Title 6", "color": "bg-sky-400" }
+  ],
+  "swiperItems": [
+    { "id": 1, "title": "Swiper 1", "desc": "Desc 1" },
+    { "id": 2, "title": "Swiper 2", "desc": "Desc 2" },
+    { "id": 3, "title": "Swiper 3", "desc": "Desc 3" },
+    { "id": 4, "title": "Swiper 4", "desc": "Desc 4" },
+    { "id": 5, "title": "Swiper 5", "desc": "Desc 5" },
+    { "id": 6, "title": "Swiper 6", "desc": "Desc 6" }
+  ],
+  "imgTabCate": ["All", "category 1", "category 2", "category 3"],
+  "imgTabItems": [
+    { "id": 1, "category": "category 1", "title": "title 1", "color": "bg-emerald-400" },
+    { "id": 2, "category": "category 2", "title": "title 2", "color": "bg-slate-400" },
+    { "id": 3, "category": "category 3", "title": "title 3", "color": "bg-sky-400" },
+    { "id": 4, "category": "category 1", "title": "title 4", "color": "bg-blue-400" },
+    { "id": 5, "category": "category 2", "title": "title 5", "color": "bg-zinc-400" },
+    { "id": 6, "category": "category 3", "title": "title 6", "color": "bg-neutral-800" }
+  ],
+  "divisions": [
+    {
+      "num": "01",
+      "title": "Divisions 1",
+      "desc": "Description"
+    },{
+      "num": "02",
+      "title": "Divisions 2",
+      "desc": "Description Description"
+    },{
+      "num": "03",
+      "title": "Divisions 3",
+      "desc": "Description Description Description"
+    },{
+      "num": "04",
+      "title": "Divisions 4",
+      "desc": "Description Description Description Description"
+    }
+  ]
+}

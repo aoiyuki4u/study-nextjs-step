@@ -28,10 +28,10 @@ function ParallaxText({ children, baseVelocity = 100 }: ParallaxProps) {
   });
   const x = useTransform(baseX, (v) => `${wrap(-20, -70, v)}%`);
   const directionFactor = useRef<number>(1);
-  console.log(directionFactor)
-  console.log(scrollVelocity)
-  console.log(smoothVelocity)
-  console.log(baseVelocity)
+  // console.log(directionFactor)
+  // console.log(scrollVelocity)
+  // console.log(smoothVelocity)
+  // console.log(baseVelocity)
   useAnimationFrame((t, delta) => {
     let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 

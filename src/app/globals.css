@@ -6,6 +6,9 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --deepblack: #050505;
+  --bgWhite:#fff;
+  --accent: #c5a358;
 }
 
 @theme inline {

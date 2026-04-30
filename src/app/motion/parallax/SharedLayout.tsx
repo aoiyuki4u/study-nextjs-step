@@ -1,41 +1,61 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useStore } from "@/store/useStore";
 import { motion, AnimatePresence } from "framer-motion";
-//React 트리에서 컴포넌트가 제거될 때 애니메이션 효과를 적용
+//AnimatePresence: React 트리에서 컴포넌트가 제거될 때 애니메이션 효과를 적용
+import Loading from "@/app/components/common/Loading";
 
-const items = [
-  { id: '1', category: 'category 1', title: 'Title 1', desc: 'desc 1', color: 'bg-blue-500' },
-  { id: '2', category: 'category 1', title: 'TitleTitle 2', desc: 'desc Title 2', color: 'bg-red-500' },
-  { id: '3', category: 'category 1', title: 'TitleTitleTitle 3', desc: 'desc Title 3', color: 'bg-orange-500' },
-  { id: '4', category: 'category 1', title: 'TitleTitleTitleTitle 4', desc: 'desc Title 4', color: 'bg-purple-500' },
-  { id: '5', category: 'category 1', title: 'TitleTitle 5', desc: 'desc Title 5', color: 'bg-gray-500' },
-  { id: '6', category: 'category 1', title: 'TitleTitleTitle 6', desc: 'desc Title 6', color: 'bg-skyblue' },
-];
 
 export default function SharedLayout() {
+  const { sharedItems, isSharedLoading, fetchSharedItems } = useStore();
   const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchSharedItems();
+  }, [fetchSharedItems]);
+
+  useEffect(() => {
+    const lenisInstance = (window as any).lenis;
+    if (selectedId) {
+      lenisInstance?.stop();
+      document.body.style.overflow = "hidden";
+    } else {
+      lenisInstance?.start();
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      lenisInstance?.start();
+    };
+  }, [selectedId]);
+
+  const selectedItem = sharedItems.find(i => String(i.id) === String(selectedId));
+
+  if (isSharedLoading) {
+    return <Loading />;
+  }
+
   return (
     <div className="min-h-screen bg-gray-100 p-8">
       <h1 className="text-3xl font-bold mb-8 ml-2 text-gray-800">Shared Layout</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {items.map((item) => (
+        {sharedItems.map((item) => (
           <motion.button
             key={item.id}
-            layoutId={`card-${item.id}`}
-            onClick={() => setSelectedId(item.id)}
-            className={`cursor-pointer overflow-hidden rounded-3xl shadow-lg ${item.color} h-[400px] relative text-left p-6`}
+            layoutId={`card-${String(item.id)}`}
+            onClick={() => setSelectedId(String(item.id))}
+            className={`cursor-pointer overflow-hidden rounded-3xl shadow-lg ${item.color || "bg-orange-500" } h-[400px] relative text-left p-6`}
           >
             <motion.p 
-              layoutId={`category-${item.id}`}
+              layoutId={`category-${String(item.id)}`}
               className="text-white/70 text-sm font-semibold uppercase"
             >
-              {item.category}
+              {item.category || "NO Category" }
             </motion.p>
             <motion.h2 
-              layoutId={`title-${item.id}`}
+              layoutId={`title-${String(item.id)}`}
               className="text-white text-2xl font-bold mt-1"
             >
-              {item.title}
+              {item.title || "NO Title" }
             </motion.h2>
           </motion.button>
         ))}
@@ -49,25 +69,33 @@ export default function SharedLayout() {
               animate={{opacity:1}}
               exit={{opacity:0}}
               onClick={()=> setSelectedId(null)}
-              className="flexed inset-0 bg-black/40 z-40 backdrop-blur-sm"
+              // className="fixed inset-0 z-40 bg-black/60 overflow-hidden backdrop-blur-sm"
+              // backdrop-blur-sm : backdrop-filter Gpu 성능 이슈로 제거
+              className="fixed inset-0 bg-black/40 z-40"
+              style={{
+                background: `radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%)`,
+              }}
             />
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-12">
+            <div className="fixed inset-0 z-50 flex items-center justify-center radial-gradient p-4 md:p-12">
               <motion.div
                 layoutId={`card-${selectedId}`}
+                data-lenis-prevent
                 className="bg-white w-full max-w-2xl h-full max-h-[80vh] rounded-[32px] overflow-hidden relative shadow-2xl flex flex-col"
               >
-                <div className={`relative h-1/2 p-8 flex flex-col justify-end ${items.find(i => i.id === selectedId)?.color}`}>
+                <div className={`relative h-1/2 p-8 flex flex-col justify-end ${selectedItem?.color || 'bg-orange-500'}`}>
                   <motion.p 
                     layoutId={`category-${selectedId}`}
                     className="text-white/70 text-sm font-semibold uppercase"
                   >
-                    {items.find(i => i.id === selectedId)?.category}
+                    {/* {sharedItems.find(i => i.id === selectedId)?.category} */}
+                    {selectedItem?.category || "NO Category"}
                   </motion.p>
                   <motion.h2 
                     layoutId={`title-${selectedId}`}
                     className="text-white text-3xl font-bold mt-1"
                   >
-                    {items.find(i => i.id === selectedId)?.title}
+                    {/* {sharedItems.find(i => i.id === selectedId)?.title} */}
+                    {selectedItem?.title || "NO Title"}
                   </motion.h2>
                   <button
                     onClick={() => setSelectedId(null)}
@@ -83,7 +111,8 @@ export default function SharedLayout() {
                   className="p-8 overflow-y-auto flex-1 bg-white"
                 >
                   <p className="text-gray-600 leading-relaxed text-lg font-medium mb-4">
-                    {items.find(i => i.id === selectedId)?.desc}
+                    {/* {sharedItems.find(i => i.id === selectedId)?.desc} */}
+                    {selectedItem?.desc || "NO Desc"}
                   </p>                  
                 </motion.div>
               </motion.div>
