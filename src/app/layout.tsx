@@ -6,7 +6,6 @@ import Navbar from '@/app/ui/Navbar';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  // title: '',
   title: {
     template: '%s',
     default: 'UX NextJs Study',

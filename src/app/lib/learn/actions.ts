@@ -38,6 +38,17 @@ const UpdatePasswordSchema = z.object({
   path: ["confirmPassword"],
 });
 
+// 계정추가
+const SignUpSchema = z.object({
+  name: z.string().min(2, { message: '이름은 2자 이상.' }),
+  email: z.email({ message: '유효한 이메일 주소 입력.' }),
+  password: z.string().min(6, { message: '비밀번호는 6자 이상' }),
+  confirmPassword:z.string().min(6)
+}).refine((data) => data.password === data.confirmPassword, {
+  message: "신규 패스워드가 같지 않음.",
+  path: ["confirmPassword"],
+});
+
 export type State = {
   errors?: {
     customerId?: string[];
@@ -190,7 +201,7 @@ export async function updatePassword(prevState: PasswordState | undefined, formD
       };
     }
     // 새 비번 업데이트
-    const hashedPassword = await bcrypt.hash(newPassword, 10);    
+    const hashedPassword = await bcrypt.hash(newPassword, 10);//기본이 10 숫자가 높아 질 수록 연산 시간 보안이 높아짐.
     await sql`
       UPDATE users 
       SET password = ${hashedPassword}
@@ -200,6 +211,36 @@ export async function updatePassword(prevState: PasswordState | undefined, formD
     return { 
       message: 'Database Error: 비밀번호 변경에 실패했습니다.' 
     };
+  }
+  revalidatePath('/learn/login');
+  redirect('/learn/login');
+}
+
+// 계정 추가 
+// prevState 속성 정의 안하고 any
+export async function signUp(prevState: any, formData: FormData) {
+  const validatedFields = SignUpSchema.safeParse(Object.fromEntries(formData.entries()));
+  if (!validatedFields.success) {
+    return {
+      errors: z.treeifyError(validatedFields.error),
+      message: '입력값을 확인해주세요.',
+    };
+  }
+  const { name, email, password } = validatedFields.data;
+  try {
+    const user = await sql`SELECT * FROM users WHERE email=${email}`;
+    if (user.length > 0) {
+      return { 
+        message: '이메일 중복' 
+      };
+    }
+    const hashedPassword = await bcrypt.hash(password, 10);    
+    await sql`
+      INSERT INTO users (name, email, password)
+      VALUES (${name}, ${email}, ${hashedPassword})
+    `;
+  } catch (error) {
+    return { message: '게정 추가 실패' };
   }
   revalidatePath('/learn/login');
   redirect('/learn/login');

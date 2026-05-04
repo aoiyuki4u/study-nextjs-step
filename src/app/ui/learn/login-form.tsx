@@ -110,6 +110,10 @@ export default function LoginForm() {
           <dt>user@nextmail.com</dt>
           <dd>123456</dd>
         </dl>
+        <dl>
+          <dt>mino@nextjs.com</dt>
+          <dd>123456</dd>
+        </dl>
       </div>
     </>
   );
