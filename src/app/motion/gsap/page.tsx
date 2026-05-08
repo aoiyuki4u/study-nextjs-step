@@ -7,6 +7,8 @@ import ImageReveal from '@/app/motion/gsap/ImageReveal';
 import TextMask from '@/app/motion/gsap/TextMask';
 import CustomCursor from '@/app/motion/gsap/CustomCursor';
 import HorizontalScroll from '@/app/motion/gsap/HorizontalScroll';
+import DDayCounter from '@/app/motion/gsap/DDayCounter';
+import SlotCounter from '@/app/motion/gsap/SlotCounter';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,26 +19,43 @@ export default function Page() {
   const containerRef = useRef(null);
   
   useEffect(() => {
+    // const handleLoad = () => {ScrollTrigger.refresh();};
+    // const handleResize = () => {ScrollTrigger.refresh();};
+
+    // window.addEventListener("load", () => ScrollTrigger.refresh());
+    // window.addEventListener("resize", () => ScrollTrigger.refresh());
+
+    // 컴포넌트 마운트된 후 전체 리프레시
+    // const timer = setTimeout(() => {
+    //   ScrollTrigger.refresh();
+    // }, 100);
+    
     gsap.fromTo(
       boxRef.current,
-      {opacity:0, y:50},
-      {opacity:1, y:0, duration:1, ease:"power3.out"},
+      {opacity:0, y:200},
+      {opacity:1, y:0, duration:1.5, ease:"power3.out"},
     )
 
     gsap.to(boxScroll.current, {
       x: () => window.innerWidth - 160,
       rotation: 360,
-      borderRadius: "50%", // 원형으로 변함
+      borderRadius: "50%",
       backgroundColor: "#3b82f6",
       ease: "none",
       scrollTrigger: {
-        trigger: containerRef.current, // 애니메이션 시작 기준점
-        start: "top 70%", // 컨테이너 상단이 화면의 80% 지점에 닿을 때 시작
-        end: "top 10%",   // 컨테이너 상단이 화면의 30% 지점에 닿을 때 종료
-        scrub: true,      // 스크롤 속도에 맞춰 애니메이션이 진행
-        markers: true,
+        trigger: containerRef.current,
+        start: "top 80%",
+        end: "top 30%",
+        scrub: true,
+        // markers: true,
       },
     });
+
+    // return () => {
+    //   window.removeEventListener("load", handleLoad);
+    //   window.removeEventListener("resize", handleResize);
+    //   clearTimeout(timer);
+    // };
   }, [])
   return (
     <main className="bg-slate-900">
@@ -76,6 +95,15 @@ export default function Page() {
 
       <section>
         <CustomCursor />
+      </section>
+
+      <section>
+        <DDayCounter />
+      </section>
+
+      <section>
+        {/* <SlotCounter /> */}
+        <SlotCounter value={8967} />
       </section>
 
       <div className="h-screen"></div>

@@ -78,7 +78,7 @@ export default function CustomCursor() {
 
   return (
     <>
-      <div className="h-screen">
+      <div className="">
         <div className="p-20">
           <Link href="/motion/gsap" style={{ color: 'white', fontWeight: 'bold' }}>CustomCursor</Link>
           <pre className="text-white">

@@ -21,9 +21,11 @@ export default function TextMask() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: "2000 top",
+          end: "1000 top",
           scrub: 0.6,
-          pin: true, // 화면 고정
+          pin: true,
+          // pinSpacing: true,
+          refreshPriority: 2
         },
       }
     );
