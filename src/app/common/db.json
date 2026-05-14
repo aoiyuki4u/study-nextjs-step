@@ -47,60 +47,75 @@
     {
       "model_id": "C001",
       "model_name": "현대 아반떼",
-      "model_img": "/quote/avante.webp",
+      "model_base_img": "/quote/avante.webp",
+      "img_server_url": "https://www.hyundai.com/contents/vr360/CN22/exterior/RRR", 
+      "img_extension": "png",
+      "total_frames": 60,
       "base_price": 19940000,
       "options": [
-        { "opt_id": "A1", "opt_name": "현대 스마트센스 I", "price": 950000 },
-        { "opt_id": "A2", "opt_name": "인포테인먼트 내비 II", "price": 700000 },
-        { "opt_id": "A3", "opt_name": "하이패스 시스템", "price": 250000 }
+        { "opt_id": "A1", "opt_name": "현대 스마트센스 I", "opt_price": 950000 },
+        { "opt_id": "A2", "opt_name": "인포테인먼트 내비 II", "opt_price": 700000 },
+        { "opt_id": "A3", "opt_name": "하이패스 시스템", "opt_price": 250000 }
       ]
     },
     {
       "model_id": "C002",
       "model_name": "기아 스포티지",
-      "model_img": "/quote/kia-sportage.webp",
+      "model_base_img": "/quote/kia-sportage.webp",
+      "img_server_url": "https://www.hyundai.com/contents/vr360/SX19/exterior/SAW", 
+      "img_extension": "png",
+      "total_frames": 60,
       "base_price": 25370000,
       "options": [
-        { "opt_id": "S1", "opt_name": "드라이브 와이즈", "price": 1000000 },
-        { "opt_id": "S2", "opt_name": "파노라마 선루프", "price": 1100000 },
-        { "opt_id": "S3", "opt_name": "하이테크 패키지", "price": 900000 },
-        { "opt_id": "S4", "opt_name": "모니터링 팩", "price": 700000 }
+        { "opt_id": "S1", "opt_name": "드라이브 와이즈", "opt_price": 1000000 },
+        { "opt_id": "S2", "opt_name": "파노라마 선루프", "opt_price": 1100000 },
+        { "opt_id": "S3", "opt_name": "하이테크 패키지", "opt_price": 900000 },
+        { "opt_id": "S4", "opt_name": "모니터링 팩", "opt_price": 700000 }
       ]
     },
     {
       "model_id": "C003",
       "model_name": "제네시스 GV70",
-      "model_img": "/quote/gv70.webp",
+      "model_base_img": "/quote/gv70.webp",
+      "img_server_url": "https://www.hyundai.com/contents/vr360/CE03/exterior/T2G", 
+      "img_extension": "png",
+      "total_frames": 60,
       "base_price": 53800000,
       "options": [
-        { "opt_id": "G1", "opt_name": "SDS II (내장 디자인)", "price": 3000000 },
-        { "opt_id": "G2", "opt_name": "파퓰러 패키지 I", "price": 4200000 },
-        { "opt_id": "G3", "opt_name": "렉시콘 사운드 패키지", "price": 1300000 },
-        { "opt_id": "G4", "opt_name": "아웃도어 패키지", "price": 400000 },
-        { "opt_id": "G5", "opt_name": "헤드업 디스플레이", "price": 1300000 }
+        { "opt_id": "G1", "opt_name": "SDS II (내장 디자인)", "opt_price": 3000000 },
+        { "opt_id": "G2", "opt_name": "파퓰러 패키지 I", "opt_price": 4200000 },
+        { "opt_id": "G3", "opt_name": "렉시콘 사운드 패키지", "opt_price": 1300000 },
+        { "opt_id": "G4", "opt_name": "아웃도어 패키지", "opt_price": 400000 },
+        { "opt_id": "G5", "opt_name": "헤드업 디스플레이", "opt_price": 1300000 }
       ]
     },
     {
       "model_id": "C004",
       "model_name": "테슬라 모델 3",
-      "model_img": "/quote/model3.webp",
+      "model_base_img": "/quote/model3.webp",
+      "img_server_url": "https://www.hyundai.com/contents/vr360/GN08/exterior/T2G", 
+      "img_extension": "png",
+      "total_frames": 60,
       "base_price": 51990000,
       "options": [
-        { "opt_id": "T1", "opt_name": "향상된 오토파일럿", "price": 4522000 },
-        { "opt_id": "T2", "opt_name": "풀 셀프 드라이빙(FSD)", "price": 9043000 },
-        { "opt_id": "T3", "opt_name": "19인치 노바 휠", "price": 1929000 }
+        { "opt_id": "T1", "opt_name": "향상된 오토파일럿", "opt_price": 4522000 },
+        { "opt_id": "T2", "opt_name": "풀 셀프 드라이빙(FSD)", "opt_price": 9043000 },
+        { "opt_id": "T3", "opt_name": "19인치 노바 휠", "opt_price": 1929000 }
       ]
     },
     {
       "model_id": "C005",
       "model_name": "BMW 5시리즈",
-      "model_img": "/quote/bmw5.webp",
+      "model_base_img": "/quote/bmw5.webp",
+      "img_server_url": "https://www.hyundai.com/contents/vr360/DN24/exterior/R2P", 
+      "img_extension": "png",
+      "total_frames": 60,
       "base_price": 68800000,
       "options": [
-        { "opt_id": "B1", "opt_name": "M 스포츠 패키지", "price": 5000000 },
-        { "opt_id": "B2", "opt_name": "컴포트 시트", "price": 1500000 },
-        { "opt_id": "B3", "opt_name": "바워스 앤 윌킨스 사운드", "price": 2000000 },
-        { "opt_id": "B4", "opt_name": "드라이빙 어시스턴트 프로", "price": 2500000 }
+        { "opt_id": "B1", "opt_name": "M 스포츠 패키지", "opt_price": 5000000 },
+        { "opt_id": "B2", "opt_name": "컴포트 시트", "opt_price": 1500000 },
+        { "opt_id": "B3", "opt_name": "바워스 앤 윌킨스 사운드", "opt_price": 2000000 },
+        { "opt_id": "B4", "opt_name": "드라이빙 어시스턴트 프로", "opt_price": 2500000 }
       ]
     }
   ]

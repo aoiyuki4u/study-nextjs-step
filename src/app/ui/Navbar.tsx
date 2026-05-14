@@ -20,6 +20,7 @@ export default function Navbar() {
       <Link href="/motion/svg" style={{ color: '#aaa' }}>SVG</Link>
       <Link href="/motion/swiper" style={{ color: '#aaa' }}>Swiper</Link>
       <Link href="/motion/parallax" style={{ color: '#aaa' }}>Parallax</Link>
+      <Link href="/quote" style={{ color: '#aaa' }}>Quote</Link>
     </nav>
   );
 }

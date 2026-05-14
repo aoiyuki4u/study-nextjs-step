@@ -6,8 +6,13 @@ const nextConfig: NextConfig = {
 };
 module.exports = {
   images: {
-    remotePatterns: [new URL('https://picsum.photos/**')],
+    // remotePatterns: [new URL('https://picsum.photos/**')],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'picsum.photos' },
+      { protocol: 'https', hostname: 'www.hyundai.com', pathname: '/**', },
+    ],
   },
-}
+};
+
 
 export default nextConfig;
