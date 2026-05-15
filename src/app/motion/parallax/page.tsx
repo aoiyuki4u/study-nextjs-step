@@ -8,6 +8,11 @@ import Expanding from '@/app/motion/parallax/Expanding';
 import TextLoop from '@/app/motion/parallax/TextLoop';
 import SharedLayout from '@/app/motion/parallax/SharedLayout';
 import BookmarkScroll from '@/app/motion/parallax/BookmarkScroll';
+import TypeIt from '@/app/motion/parallax/TypeIt';
+import TypeItFramer from '@/app/motion/parallax/TypeItFramer';
+import TypeItGsap from '@/app/motion/parallax/TypeItGsap';
+
+
 
 
 
@@ -38,6 +43,16 @@ export default function Page({ params, searchParams }: any) {
       <section>
         <BookmarkScroll />
       </section>
+      <section>
+        <TypeIt />
+      </section>
+      <section>
+        <TypeItFramer />
+      </section>
+      <section>
+        <TypeItGsap />
+      </section>
+      
       <section>
         <Sample />
       </section>
