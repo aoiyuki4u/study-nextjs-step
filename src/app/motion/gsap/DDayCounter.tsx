@@ -2,7 +2,7 @@
 import { useEffect, useState, useRef } from "react";
 
 interface DDayProps {
-  targetDate: string;
+  targetDate?: string;
 }
 
 export default function DDayCounter({ targetDate = "2026-12-31 23:59:59" }: DDayProps) {
