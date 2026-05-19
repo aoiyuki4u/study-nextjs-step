@@ -28,7 +28,8 @@ export default function EditInvoiceForm({
   // const updateInvoiceWithId = updateInvoice.bind(null, invoice.id);
   // const [state, formAction] = useActionState(updateInvoiceWithId, initialState);
   const [state, formAction] = useActionState(updateInvoice, initialState);
-  const fieldErrors = state.errors?.properties || {};
+  const safeState = state ?? initialState;
+  const fieldErrors = safeState.errors?.properties || {};
   return (
     <form action={formAction}>
       <input type="hidden" name="id" value={invoice.id} />
@@ -59,12 +60,11 @@ export default function EditInvoiceForm({
           </div>
 
           <div id="customer-error" aria-live="polite" aria-atomic="true">
-            {fieldErrors.customerId.errors &&
-              fieldErrors.customerId.errors.map((error: string) => (
-                <p className="mt-2 text-sm text-red-500" key={error}>
-                  {error}
-                </p>
-              ))}
+            {fieldErrors.customerId?.errors?.map((error: string) => (
+              <p className="mt-2 text-sm text-red-500" key={error}>
+                {error}
+              </p>
+            ))}
           </div>
         </div>
 
@@ -90,12 +90,11 @@ export default function EditInvoiceForm({
           </div>
 
           <div id="amount-error" aria-live="polite" aria-atomic="true">
-            {fieldErrors.amount.errors &&
-              fieldErrors.amount.errors.map((error: string) => (
-                <p className="mt-2 text-sm text-red-500" key={error}>
-                  {error}
-                </p>
-              ))}
+            {fieldErrors.amount?.errors?.map((error: string) => (
+              <p className="mt-2 text-sm text-red-500" key={error}>
+                {error}
+              </p>
+            ))}
           </div>
         </div>
 
@@ -141,12 +140,11 @@ export default function EditInvoiceForm({
             </div>
           </div>
           <div id="status-error" aria-live="polite" aria-atomic="true">
-            {fieldErrors.status.errors &&
-              fieldErrors.status.errors.map((error: string) => (
-                <p className="mt-2 text-sm text-red-500" key={error}>
-                  {error}
-                </p>
-              ))}
+            {fieldErrors.status?.errors?.map((error: string) => (
+              <p className="mt-2 text-sm text-red-500" key={error}>
+                {error}
+              </p>
+            ))}
           </div>
         </fieldset>
 

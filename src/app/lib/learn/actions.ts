@@ -58,7 +58,7 @@ const SignUpSchema = z.object({
 //   message?: string | null;
 // };
 export type State = {
-  message: string;
+  message?: string | null;
   errors?: {
     errors: string[];
     properties?: {

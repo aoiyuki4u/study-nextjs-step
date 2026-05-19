@@ -23,8 +23,10 @@ export default function Form({
     }
   };
   const [state, formAction] = useActionState(createInvoice, initialState);
+  console.log(state)
 
-  const fieldErrors = state.errors?.properties || {};
+  const safeState = state ?? initialState;
+  const fieldErrors = safeState.errors?.properties || {};
   return (
     <form action={formAction}>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
@@ -53,12 +55,11 @@ export default function Form({
             <UserCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" />
           </div>
           <div id="customer-error" aria-live="polite" aria-atomic="true">
-            {fieldErrors.customerId &&
-              fieldErrors.customerId.errors.map((error: string) => (
-                <p className="mt-2 text-sm text-red-500" key={error}>
-                  {error}
-                </p>
-              ))}
+            {fieldErrors.customerId?.errors?.map((error: string) => (
+              <p className="mt-2 text-sm text-red-500" key={error}>
+                {error}
+              </p>
+            ))}
           </div>
         </div>
 
@@ -82,12 +83,11 @@ export default function Form({
             </div>
           </div>
           <div id="amount-error" aria-live="polite" aria-atomic="true">
-            {fieldErrors.amount.errors &&
-              fieldErrors.amount.errors.map((error: string) => (
-                <p className="mt-2 text-sm text-red-500" key={error}>
-                  {error}
-                </p>
-              ))}
+            {fieldErrors.amount?.errors?.map((error: string) => (
+              <p className="mt-2 text-sm text-red-500" key={error}>
+                {error}
+              </p>
+            ))}
           </div>
         </div>
 
@@ -131,12 +131,11 @@ export default function Form({
             </div>
           </div>
           <div id="status-error" aria-live="polite" aria-atomic="true">
-            {fieldErrors.status.errors &&
-              fieldErrors.status.errors.map((error: string) => (
-                <p className="mt-2 text-sm text-red-500" key={error}>
-                  {error}
-                </p>
-              ))}
+            {fieldErrors.status?.errors?.map((error: string) => (
+              <p className="mt-2 text-sm text-red-500" key={error}>
+                {error}
+              </p>
+            ))}
           </div>
         </fieldset>
         <div aria-live="polite" aria-atomic="true">
