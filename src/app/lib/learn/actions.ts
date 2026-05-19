@@ -49,11 +49,23 @@ const SignUpSchema = z.object({
   path: ["confirmPassword"],
 });
 
+// export type State = {
+//   errors?: {
+//     customerId?: string[];
+//     amount?: string[];
+//     status?: string[];
+//   };
+//   message?: string | null;
+// };
+
 export type State = {
   errors?: {
-    customerId?: string[];
-    amount?: string[];
-    status?: string[];
+    errors: string[];
+    properties?: {
+      amount?: { errors: string[] };
+      customerId?: { errors: string[] };
+      status?: { errors: string[] };
+    };
   };
   message?: string | null;
 };
