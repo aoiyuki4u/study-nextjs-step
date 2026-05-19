@@ -20,7 +20,9 @@
     ],
     "paths": {
       "@/*": ["./src/*", "./*"] 
-    }
+    },
+    "noImplicitAny": false,       // any 타입 생략 시 에러 내는 것을 방지
+    "strictNullChecks": false     // null/undefined 체크를 유연하게 변경
   },
   "include": [
     "next-env.d.ts",

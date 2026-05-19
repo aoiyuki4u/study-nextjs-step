@@ -21,6 +21,7 @@ export default function Navbar() {
       <Link href="/motion/swiper" style={{ color: '#aaa' }}>Swiper</Link>
       <Link href="/motion/parallax" style={{ color: '#aaa' }}>Parallax</Link>
       <Link href="/quote" style={{ color: '#aaa' }}>Quote</Link>
+      <Link href="/trends" style={{ color: '#aaa' }}>Trends</Link>
     </nav>
   );
 }
