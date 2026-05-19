@@ -57,17 +57,16 @@ const SignUpSchema = z.object({
 //   };
 //   message?: string | null;
 // };
-
 export type State = {
+  message: string;
   errors?: {
     errors: string[];
     properties?: {
-      amount?: { errors: string[] };
       customerId?: { errors: string[] };
+      amount?: { errors: string[] };
       status?: { errors: string[] };
     };
   };
-  message?: string | null;
 };
 
 // 비밀번호 변경
@@ -83,20 +82,27 @@ export type PasswordState = {
 };
 
 export async function createInvoice(prevState: State, formData: FormData) {  
-  const validatedFields = CreateInvoice.safeParse({
-    customerId: formData.get('customerId') || "",
-    amount: formData.get('amount'),
-    status: formData.get('status') || '',
-  });
+  // const validatedFields = CreateInvoice.safeParse({
+  //   customerId: formData.get('customerId') || "",
+  //   amount: formData.get('amount'),
+  //   status: formData.get('status') || '',
+  // });
   // console.log(formData.get('customerId'))
   // If form validation fails, return errors early. Otherwise, continue.
-  if (!validatedFields.success) {
-    // const flattenedErrors = validatedFields.error.flatten().fieldErrors;
-    const flattenedErrors = z.treeifyError(validatedFields.error);    
+  const validatedFields = CreateInvoice.safeParse(Object.fromEntries(formData.entries()));
+  // if (!validatedFields.success) {
+  //   // const flattenedErrors = validatedFields.error.flatten().fieldErrors;
+  //   const flattenedErrors = z.treeifyError(validatedFields.error);    
     
+  //   return {
+  //     errors: flattenedErrors,
+  //     message: 'Missing Fields. Failed to Create Invoice.',
+  //   };
+  // }
+  if (!validatedFields.success) {
     return {
-      errors: flattenedErrors,
-      message: 'Missing Fields. Failed to Create Invoice.',
+      errors: z.treeifyError(validatedFields.error),
+      message: '입력값을 확인해주세요.',
     };
   }
  
@@ -125,17 +131,25 @@ export async function createInvoice(prevState: State, formData: FormData) {
   // console.log('amountInCents : ' + amountInCents);
 }
 
-export async function updateInvoice(id: string, prevState: State, formData: FormData,) {
-  const validatedFields = UpdateInvoice.safeParse({
-    customerId: formData.get('customerId'),
-    amount: formData.get('amount'),
-    status: formData.get('status'),
-  });
+export async function updateInvoice(prevState: State, formData: FormData) {
+  // const validatedFields = UpdateInvoice.safeParse({
+  //   customerId: formData.get('customerId'),
+  //   amount: formData.get('amount'),
+  //   status: formData.get('status'),
+  // });
+  const id = formData.get('id') as string;
+  const validatedFields = UpdateInvoice.safeParse(Object.fromEntries(formData.entries()));
  
+  // if (!validatedFields.success) {
+  //   return {
+  //     errors: validatedFields.error.flatten().fieldErrors,
+  //     message: 'Missing Fields. Failed to Update Invoice.',
+  //   };
+  // }
   if (!validatedFields.success) {
     return {
-      errors: validatedFields.error.flatten().fieldErrors,
-      message: 'Missing Fields. Failed to Update Invoice.',
+      errors: z.treeifyError(validatedFields.error),
+      message: '입력값을 확인해주세요.',
     };
   }
  

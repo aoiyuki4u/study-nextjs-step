@@ -19,12 +19,19 @@ export default function EditInvoiceForm({
   invoice: InvoiceForm;
   customers: CustomerField[];
 }) {
-  const initialState: State = { message: null, errors: {} };
-  const updateInvoiceWithId = updateInvoice.bind(null, invoice.id);
-  const [state, formAction] = useActionState(updateInvoiceWithId, initialState);
-
+  const initialState: State = { 
+    message: '',
+    errors: {
+      errors: []
+    }
+  };
+  // const updateInvoiceWithId = updateInvoice.bind(null, invoice.id);
+  // const [state, formAction] = useActionState(updateInvoiceWithId, initialState);
+  const [state, formAction] = useActionState(updateInvoice, initialState);
+  const fieldErrors = state.errors?.properties || {};
   return (
     <form action={formAction}>
+      <input type="hidden" name="id" value={invoice.id} />
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
         {/* Customer Name */}
         <div className="mb-4">
@@ -52,8 +59,8 @@ export default function EditInvoiceForm({
           </div>
 
           <div id="customer-error" aria-live="polite" aria-atomic="true">
-            {state.errors?.customerId &&
-              state.errors.customerId.map((error: string) => (
+            {fieldErrors.customerId.errors &&
+              fieldErrors.customerId.errors.map((error: string) => (
                 <p className="mt-2 text-sm text-red-500" key={error}>
                   {error}
                 </p>
@@ -83,8 +90,8 @@ export default function EditInvoiceForm({
           </div>
 
           <div id="amount-error" aria-live="polite" aria-atomic="true">
-            {state.errors?.amount &&
-              state.errors.amount.map((error: string) => (
+            {fieldErrors.amount.errors &&
+              fieldErrors.amount.errors.map((error: string) => (
                 <p className="mt-2 text-sm text-red-500" key={error}>
                   {error}
                 </p>
@@ -134,8 +141,8 @@ export default function EditInvoiceForm({
             </div>
           </div>
           <div id="status-error" aria-live="polite" aria-atomic="true">
-            {state.errors?.status &&
-              state.errors.status.map((error: string) => (
+            {fieldErrors.status.errors &&
+              fieldErrors.status.errors.map((error: string) => (
                 <p className="mt-2 text-sm text-red-500" key={error}>
                   {error}
                 </p>
