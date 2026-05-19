@@ -73,6 +73,12 @@ interface TreemapItem {
   [key: string]: any;
 }
 
+export interface NewsItem {
+  title: string;
+  snippet?: string;
+  url?: string;
+}
+
 interface LayoutResult extends TreemapItem {
   x: number;
   y: number;
