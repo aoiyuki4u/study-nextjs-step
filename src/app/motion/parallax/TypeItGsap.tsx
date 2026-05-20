@@ -24,18 +24,18 @@ export default function TypeItGsap() {
   useEffect(() => {
     if (!spanRef.current || !containerRef.current) return;
 
-    if (instanceRef.current) {
-      instanceRef.current.destroy();
-    }
+    // if (instanceRef.current) {
+    //   instanceRef.current.destroy();
+    // }
 
     instanceRef.current = new TypeIt(spanRef.current, {
       speed: 50,
       cursorChar: "😀",
       cursorSpeed: 1000,
       lifeLike: true,
-      afterComplete: (instance: any) => {
-        instance.destroy();
-      }
+      // afterComplete: (instance: any) => {
+      //   instance.destroy();
+      // }
     })
     .type("Gsap Hellow gggg")
     .pause(300)

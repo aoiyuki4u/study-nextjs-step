@@ -21,6 +21,7 @@ export default function CustomCursor() {
     gsap.set(followerRef.current, { xPercent: -50, yPercent: -50 });
 
     const onMouseMove = (e: MouseEvent) => {
+      if (!cursorRef.current || !followerRef.current) return;
       gsap.to([cursorRef.current, followerRef.current], { 
         opacity: 1, 
         scale: 1, 

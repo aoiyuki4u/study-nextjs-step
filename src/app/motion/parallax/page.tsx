@@ -1,4 +1,5 @@
 "use client";
+import { usePathname } from 'next/navigation';
 import Sample from '@/app/motion/parallax/Sample';
 import Sample2 from '@/app/motion/parallax/Sample2';
 import Stacking from '@/app/motion/parallax/Stacking';
@@ -17,6 +18,7 @@ import TypeItGsap from '@/app/motion/parallax/TypeItGsap';
 
 
 export default function Page({ params, searchParams }: any) {
+  const pathname = usePathname();
   return (
     <main>
       <section>
@@ -44,13 +46,13 @@ export default function Page({ params, searchParams }: any) {
         <BookmarkScroll />
       </section>
       <section>
-        <TypeIt />
+        <TypeIt key={pathname} />
       </section>
       <section>
-        <TypeItFramer />
+        <TypeItFramer key={pathname} />
       </section>
       <section>
-        <TypeItGsap />
+        <TypeItGsap key={pathname} />
       </section>
       
       <section>

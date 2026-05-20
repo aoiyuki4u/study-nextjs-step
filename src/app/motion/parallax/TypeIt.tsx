@@ -24,9 +24,9 @@ export default function TypingComponent() {
       cursorSpeed: 1000,
       lifeLike: true,
       waitUntilVisible: false,
-      afterComplete: (instance: any) => {
-        instance.destroy();
-      }
+      // afterComplete: (instance: any) => {
+      //   instance.destroy();
+      // }
     })
     .type("Hellow ggg")
     .pause(300)
