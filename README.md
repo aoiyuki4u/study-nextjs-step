@@ -19,4 +19,4 @@ https://study-nextjs-step-20260306.vercel.app/motion/parallax
 - 견적내기
 https://study-nextjs-step-20260306.vercel.app/quote
 - 트렌드 맵
-https://study-nextjs-step-20260306.vercel.app/trends
+https://trandsmap.vercel.app/
