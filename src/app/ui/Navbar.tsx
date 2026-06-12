@@ -23,7 +23,7 @@ export default function Navbar() {
       <Link href="/quote" style={{ color: '#aaa' }}>Quote</Link>
       <Link href="https://trandsmap.vercel.app/" target='_blank' style={{ color: '#aaa' }}>Trends</Link>
       <Link href="https://geo-next-three.vercel.app/" target='_blank' style={{ color: '#aaa' }}>GEO LLms</Link>
-      <Link href="https://trandsmap.vercel.app/" target='_blank' style={{ color: '#aaa' }}>투자 페르소나</Link>
+      <Link href="https://mpm-ecru.vercel.app/" target='_blank' style={{ color: '#aaa' }}>투자 페르소나</Link>
     </nav>
   );
 }
