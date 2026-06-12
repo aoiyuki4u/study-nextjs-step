@@ -20,3 +20,7 @@ https://study-nextjs-step-20260306.vercel.app/motion/parallax
 https://study-nextjs-step-20260306.vercel.app/quote
 - 트렌드 맵
 https://trandsmap.vercel.app/
+- GEO LLms
+https://geo-next-three.vercel.app
+- 투자 페르소나
+https://mpm-ecru.vercel.app/
